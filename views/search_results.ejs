@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/style.css">  
+  <Link rel="shortcut icon" href="./favicon.ico/favicon.png" />  
+  <title>検索結果</title>
+</head>
+<body id="search">
+  <h1>検索結果: <%= query %></h1>
+  <% if (articles.length > 0) { %>
+    <ul>
+      <% articles.forEach(function(article) { %>
+        <li><a href="/article/<%= article.id %>"><%= article.title %></a></li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>該当する記事が見つかりませんでした。</p>
+  <% } %>
+</body>
+</html>
+

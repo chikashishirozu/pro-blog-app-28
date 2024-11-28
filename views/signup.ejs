@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BLOG</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <Link rel="shortcut icon" href="./favicon.ico/favicon.png" />
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <div class="sign">
+      <div class="container">
+        <h1><a href="/list">BLOG</a></h1>
+        <div class="panel">
+          <h2>新規登録</h2>
+          <% if (errors.length > 0) { %>
+            <ul class="errors">
+              <% errors.forEach(error => { %>
+                <li><%= error %></li>
+              <% }); %>
+            </ul>
+          <% } %>
+          <form action="/signup" method="post">
+            <p>ユーザー名</p>
+            <input type="text" name="username">
+            <p>メールアドレス</p>
+            <input type="text" name="email">
+            <p>パスワード</p>
+            <input type="password" name="password">
+            <p id="pass02">パスワードの確認</pl>        
+            <input type="password" name="password_conform">
+            <input type="submit" value="登録する">           
+            <footer>
+              <a class="btn sub" href="/list">一覧にもどる</a>
+            </footer>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

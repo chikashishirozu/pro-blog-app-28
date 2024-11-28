@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新しい記事を追加</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <Link rel="shortcut icon" href="./favicon.ico/favicon.png" />
+    <script src="/send_url.js"></script>
+</head>
+<body id="art002">
+    <div class="container" id="adda">
+        <h1 id="addb">新しい記事を追加</h1>
+        <% if (errors && errors.length > 0) { %>
+            <ul class="errors" id="error-list">
+                <% errors.forEach(error => { %>
+                    <li><%= error %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+        <form action="/add-article" method="post" id="addc">
+            <p>タイトル</p>
+            <input type="text" name="title">
+            <p>概要</p>
+            <textarea name="summary"></textarea>
+            <p>コンテンツ</p>
+            <textarea name="content"></textarea>
+            <p>カテゴリー</p>
+            <input type="text" name="category" placeholder="all または limited を入力してください。">
+            <input type="submit" value="投稿">
+        </form>
+    <footer id="addd">
+      <a class="btn sub" href="/list">一覧にもどる</a>
+    </footer>
+    </div>
+</body>
+</html>
+

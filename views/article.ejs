@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BLOG</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <Link rel="shortcut icon" href="/favicon.ico/favicon.png" />
+    <script src="/send_url.js"></script>
+  </head>
+  <body id="art002">
+    <%- include('header'); %>
+    <main>
+      <div class="article">
+        <% if (article.category === 'all') { %>
+          <h1><%= article.title %></h1>
+          <p><%= article.content %></p>
+          <p>投稿者：<%= article.username %></p>
+          <p>投稿日時：<%= article.created_at %></p><br/><br/>
+          <!-- <p>セッションユーザーID：<%= user_id %></p> -->
+          <!-- <p>記事ユーザーID：<%= article.user_id %></p> -->
+          <% if (article.updated_at) { %>
+            <p>更新日時：<%= article.updated_at %></p>
+          <% } %>
+          <br/><br/>
+          <% if (locals.user_id === article.user_id) { %>
+            <form action="/article/<%= article.id %>/delete" method="post">
+              <button type="submit">削除</button>
+            </form>
+          <% } %>         
+        <% } else if (article.category === 'limited') { %>
+          <i>会員限定</i>
+          <h1><%= article.title %></h1>
+          <% if (locals.isLoggedIn) { %>
+            <p><%= article.content %></p>
+            <br/><br/><br/>
+            <p>投稿者：<%= article.username %></p>
+            <p>投稿日時：<%= article.created_at %></p>
+            <!-- <p>セッションユーザーID：<%= user_id %></p> -->
+            <!-- <p>記事ユーザーID：<%= article.user_id %></p> -->    
+            <% if (article.updated_at) { %>
+              <p>更新日時：<%= article.updated_at %></p>
+            <% } %>
+            <br/><br/>            
+            <% if (locals.user_id === article.user_id) { %>
+            <div class="button-group">
+              <form action="/article/<%= article.id %>/delete" method="post">
+                <button id="sakuzyo" type="submit">削除</button>
+              </form>
+              <!-- ここから編集ボタンを追加 -->
+              <form action="/article/<%= article.id %>/edit" method="get">
+                <button id="hennshuu" type="submit">編集</button>
+              </form>
+              <!-- ここまで編集ボタンを追加 -->
+            </div>
+            <% } %>
+          <% } else { %>
+            <div class="article-login">
+              <p>今すぐログインしよう！</p>
+              <p>記事の続きは<br>ログインすると読むことができます</p><br />
+              <a class="btn" href="/login">ログイン</a>
+            </div>
+          <% } %>
+        <% } %>
+      </div>
+    </main>
+    <footer id="art003">
+      <a class="btn sub" href="/list">一覧にもどる</a>
+    </footer>
+  </body>
+</html>

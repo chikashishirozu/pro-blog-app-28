@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "username": "にんじゃわんこ",
+    "email": "wanko@prog-8.com",
+    "password": "ninja"
+  },
+  {
+    "id": 2,
+    "username": "ひつじ仙人",
+    "email": "hitsuji@prog-8.com",
+    "password": "sennin"
+  },
+  {
+    "id": 3,
+    "username": "ベイビーわんこ",
+    "email": "baby@prog-8.com",
+    "password": "baby"
+  },
+  {
+    "id": 4,
+    "username": "とりずきん",
+    "email": "torizukin@prog-8.com",
+    "password": "tori"
+  }
+]
+

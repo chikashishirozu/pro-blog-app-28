@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BLOG</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <Link rel="shortcut icon" href="./favicon.ico/favicon.png" />  
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header'); %>
+    <main>
+      <ul class="list">
+        <!-- 記事の一覧を表示する処理を確認してください -->
+      <% if (articles && articles.length) { %>
+        <% articles.forEach((article) => { %>
+          <li id="art002">
+          　<% if (article.category === 'limited') { %>
+        　　　<i>会員限定</i>
+      　　　　<% } %>
+            <h2><%= article.title %></h2>
+            <p><%= article.summary %></p>
+            <p>投稿者：<%= article.username %></p>
+            <p>投稿日時：<%= article.created_at %></p>
+            <!-- 閲覧画面へのリンクの指定方法を確認してください -->
+            <a href="/article/<%= article.id %>">続きを読む</a>
+          </li>
+           <% }) %>
+         <% } else { %>
+        <li>No articles found.</li>
+         <% } %>
+      </ul>
+
+      <% var pages = pages || 1; %>
+      <% if (pages > 1) { %>
+        <!-- Pagination -->
+        <ul class="pagination">
+          <% if (current > 1) { %>
+            <li><a href="/list?page=<%= current - 1 %>">Previous</a></li>
+          <% } %>
+
+          <% if (current > 3) { %>
+            <li><a href="/list?page=1">1</a></li>
+            <% if (current > 4) { %>
+              <li>...</li>
+            <% } %>
+          <% } %>
+
+          <% for (let i = Math.max(1, current - 2); i <= Math.min(pages, current + 2); i++) { %>
+            <li class="<%= current === i ? 'active' : '' %>">
+              <a href="/list?page=<%= i %>"><%= i %></a>
+            </li>
+          <% } %>
+
+          <% if (current < pages - 2) { %>
+            <% if (current < pages - 3) { %>
+              <li>...</li>
+            <% } %>
+            <li><a href="/list?page=<%= pages %>"><%= pages %></a></li>
+          <% } %>
+
+          <% if (current < pages) { %>
+            <li><a href="/list?page=<%= current + 1 %>">Next</a></li>
+          <% } %>
+        </ul>
+      <% } %>
+      </main>
+
+  </body>
+</html>

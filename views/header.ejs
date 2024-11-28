@@ -1,0 +1,24 @@
+<header>
+  <div class="header-nav">
+    <a href="/">BLOG</a>
+    <p>ようこそ、<%= locals.username %>さん</p>
+    <ul id="ul03">
+      <li><a href="/list">記事一覧</a></li>
+      <% if (locals.isLoggedIn) { %>
+        <li><a href="/logout">ログアウト</a></li>
+        <li><a href="/add-article">記事を追加</a></li>
+        <form 1d="search01" action="/search" method="get">
+          <input id="search02" type="text" name="query" placeholder="記事を検索">
+          <button id="search03" type="submit">検索</button>
+        </form>        
+      <% } else { %>
+        <li><a href="/signup">新規登録</a></li>
+        <li><a href="/login">ログイン</a></li>
+      <% } %>
+    </ul>
+    <!-- ここから検索フォームを追加 -->
+
+    <!-- ここまで検索フォームを追加 -->
+  </div>
+  <p>プログラミングの学びブログ</p>
+</header>
