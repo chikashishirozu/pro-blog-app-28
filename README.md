@@ -1,3 +1,3 @@
 # pro-blog-app-28
 
-https://ameblo.jp/hiroppy-yz7oz4mytn6wabf/
+https://zusann123.blogspot.com/2024/12/blog-post_6.html
