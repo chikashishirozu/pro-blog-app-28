@@ -434,7 +434,12 @@ app.post('/signup', (req, res) => {
   }
 });
 
-// サーバーの起動
-app.listen(3000, () => {
-  console.log('Server is running on port ${port}');
+// コマンドライン引数から IP アドレスとポートを取得
+const args = process.argv.slice(2);
+const HOST = args[0] || '0.0.0.0';
+const PORT = args[1] || 3000;
+
+// サーバーを起動
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running at http://${HOST}:${PORT}`);
 });
