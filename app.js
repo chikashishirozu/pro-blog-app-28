@@ -2,31 +2,43 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const session = require('express-session');
-// const SQLiteStore = require('connect-sqlite3')(session);
+const SQLiteStore = require('connect-sqlite3')(session);
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv').config();
 const saltRounds = 10; // ソルトの生成に使用するラウンド数
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.argv[3] || 3003;
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
 // データベース接続
-const db = new sqlite3.Database('./blog.db');
+const db = new sqlite3.Database('./blog.db', (err) => {
+  if (err) {
+    console.error('DB connection error:', err.message);
+  } else {
+    console.log('Connected to SQLite database');
+  }
+});
 
 app.use(session({
-    // store: new SQLiteStore,
-    secret: 'my_secret_key',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // 開発環境ではfalse、本番環境ではtrueに設定
-  }));
+  store: new SQLiteStore({
+    db: 'sessions.db'
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: false
+  }
+}));
 
 // ユーザーIDを生成する関数
 function generateUserId() {
@@ -281,15 +293,59 @@ app.post('/article/:id/edit', (req, res) => {
 
 // 検索結果表示ルート
 app.get('/search', (req, res) => {
-  const query = req.query.query;
-  db.all('SELECT * FROM articles WHERE title LIKE ? OR content LIKE ?', [`%${query}%`, `%${query}%`], (err, rows) => {
+
+  const query = (req.query.query || "").trim();
+
+  if (!query) {
+    return res.redirect('/articles');
+  }
+
+  const ftsSQL = `
+    SELECT a.*
+    FROM articles a
+    JOIN articles_fts f ON a.id = f.rowid
+    WHERE f MATCH ?
+    LIMIT 20
+  `;
+
+  db.all(ftsSQL, [query], (err, rows) => {
+
+    // FTSエラー時は通常検索
     if (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error');
-      return;
+
+      console.log("FTS error, fallback to LIKE search");
+
+      const likeSQL = `
+        SELECT *
+        FROM articles
+        WHERE title LIKE ? OR content LIKE ?
+        LIMIT 20
+      `;
+
+      const likeQuery = `%${query}%`;
+
+      return db.all(likeSQL, [likeQuery, likeQuery], (err2, rows2) => {
+
+        if (err2) {
+          console.error(err2);
+          return res.status(500).send("Search Error");
+        }
+
+        res.render("search_results.ejs", {
+          articles: rows2,
+          query: query
+        });
+
+      });
     }
-    res.render('search_results.ejs', { articles: rows, query: query });
+
+    res.render("search_results.ejs", {
+      articles: rows,
+      query: query
+    });
+
   });
+
 });
 
 // 記事の削除
@@ -414,6 +470,7 @@ app.post('/signup', (req, res) => {
     res.render('signup.ejs', { errors: errors });
   } else {
     bcrypt.hash(password, saltRounds, function(err, hash) {
+      const created_at = formatJSTDate();
       if (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
@@ -434,12 +491,7 @@ app.post('/signup', (req, res) => {
   }
 });
 
-// コマンドライン引数から IP アドレスとポートを取得
-const args = process.argv.slice(2);
-const HOST = args[0] || '0.0.0.0';
-const PORT = args[1] || 3000;
-
-// サーバーを起動
-app.listen(PORT, HOST, () => {
-  console.log(`Server is running at http://${HOST}:${PORT}`);
+// サーバーの起動
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on http://127.0.0.1:${port}`);
 });

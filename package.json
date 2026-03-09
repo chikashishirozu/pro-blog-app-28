@@ -1,7 +1,7 @@
 {
   "name": "pro-blog-app",
   "version": "1.0.0",
-  "main": "App.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node App.js"
@@ -10,14 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
+    "bcrypt": "^6.0.0",
+    "connect-sqlite3": "^0.9.16",
+    "dotenv": "^17.3.1",
+    "ejs": "^5.0.1",
+    "express": "^4.22.1",
     "express-session": "^1.18.0",
-    "mysql": "^2.18.1",
     "sqlite3": "^5.1.7",
-    "uuid": "^9.0.1"
+    "uuid": "^13.0.0"
   },
-  "devDependencies": {},
   "description": ""
 }
