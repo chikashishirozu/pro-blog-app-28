@@ -11,3 +11,25 @@ $ npm install
 Specify IP address or port, default is 127.0.0.1:3000
 
 $ node app.js 127.0.0.1 3003 or $ node app.js
+
+# sqliteDB
+
+``` bash
+CREATE INDEX idx_articles_id ON articles(id);
+CREATE INDEX idx_articles_title ON articles(title);
+CREATE INDEX idx_users_email ON users(email);
+
+CREATE VIRTUAL TABLE articles_fts USING fts5(
+title,
+content,
+content='articles',
+content_rowid='id'
+);
+
+INSERT INTO articles_fts(rowid, title, content)
+SELECT id, title, content FROM articles;
+
+SELECT rowid
+FROM articles_fts
+WHERE articles_fts MATCH ?
+```
