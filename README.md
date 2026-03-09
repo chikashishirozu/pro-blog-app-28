@@ -31,5 +31,11 @@ SELECT id, title, content FROM articles;
 
 SELECT rowid
 FROM articles_fts
-WHERE articles_fts MATCH ?
+WHERE articles_fts MATCH 'AI';
+
+または
+
+SELECT rowid
+FROM articles_fts
+WHERE articles_fts MATCH 'blog';
 ```
