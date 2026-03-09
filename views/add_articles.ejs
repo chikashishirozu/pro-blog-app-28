@@ -27,6 +27,7 @@
             <p>カテゴリー</p>
             <input type="text" name="category" placeholder="all または limited を入力してください。">
             <input type="submit" value="投稿">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         </form>
     <footer id="addd">
       <a class="btn sub" href="/list">一覧にもどる</a>
