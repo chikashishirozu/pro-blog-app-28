@@ -11,20 +11,21 @@ const dotenv = require('dotenv').config();
 const saltRounds = 10; // ソルトの生成に使用するラウンド数
 const app = express();
 const port = process.argv[3] || 3003;
-
-app.use(express.static('public'));
-app.use(express.urlencoded({extended: false}));
-
-app.set('view engine', 'ejs');
-
-// データベース接続
-const db = new sqlite3.Database('./blog.db', (err) => {
-  if (err) {
-    console.error('DB connection error:', err.message);
-  } else {
-    console.log('Connected to SQLite database');
-  }
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100
 });
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+const sanitizeHtml = require('sanitize-html');
+
+app.use(helmet());
+app.use(limiter);
+app.use(cookieParser());
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
   store: new SQLiteStore({
@@ -39,6 +40,21 @@ app.use(session({
     secure: false
   }
 }));
+
+// csrfProtection は session・cookieParser の後に定義・適用
+const csrfProtection = csrf({ cookie: true });
+app.use(csrfProtection);
+
+app.set('view engine', 'ejs');
+
+// データベース接続
+const db = new sqlite3.Database('./blog.db', (err) => {
+  if (err) {
+    console.error('DB connection error:', err.message);
+  } else {
+    console.log('Connected to SQLite database');
+  }
+});
 
 // ユーザーIDを生成する関数
 function generateUserId() {
@@ -159,12 +175,22 @@ app.get('/article/:id', (req, res) => {
   
 // 新しい記事の投稿フォームを表示するルート
 app.get('/add-article', (req, res) => {
-  res.render('add_articles.ejs', { errors: [] });
+  res.render('add_articles.ejs', {
+    errors: [],
+    csrfToken: req.csrfToken()
+  });
 });
-  
-  // 新しい記事の追加
+
+// 新しい記事の追加
 app.post('/add-article', (req, res) => {
   const { title, summary, content, category } = req.body;
+
+  // ここでサニタイズ
+  const cleanContent = sanitizeHtml(content, {
+    allowedTags: ['p', 'strong', 'em', 'ul', 'ol', 'li', 'h2', 'h3', 'br'],
+    allowedAttributes: {}
+  });  
+  
   const created_at = formatJSTDate();
   const user_id = req.session.userId; // セッションからユーザーIDを取得
   const updated_at = formatJSTDate();  
@@ -194,7 +220,7 @@ app.post('/add-article', (req, res) => {
     res.render('add_articles.ejs', { errors: errors });
   } else {
     db.run('INSERT INTO articles (title, summary, content, category, user_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [title, summary, content, category, user_id, created_at, updated_at],
+      [title, summary, cleanContent, category, user_id, created_at, updated_at],
       function (err) {
         if (err) {
           console.error(err);
@@ -273,7 +299,7 @@ app.post('/article/:id/edit', (req, res) => {
         res.status(500).send('Internal Server Error');
         return;
       }
-      res.render('edit_article.ejs', { article: article, errors: errors });
+      res.render('edit_article.ejs', { article: article, errors: [], csrfToken: req.csrfToken() });
     });
   } else {
     db.run('UPDATE articles SET title = ?, summary = ?, content = ?, category = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = ?',
@@ -294,7 +320,14 @@ app.post('/article/:id/edit', (req, res) => {
 // 検索結果表示ルート
 app.get('/search', (req, res) => {
 
-  const query = (req.query.query || "").trim();
+  // ✅ xss-cleanでエスケープされた文字を元に戻す
+  const rawQuery = (req.query.query || "").trim();
+  const query = rawQuery
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;/g, "'");
 
   if (!query) {
     return res.redirect('/articles');
@@ -381,7 +414,7 @@ app.post('/article/:id/delete', (req, res) => {
 
 // ログインページ
 app.get('/login', (req, res) => {
-  res.render('login.ejs');
+  res.render('login.ejs', { csrfToken: req.csrfToken() });
 });
 
 // ログイン処理
@@ -443,7 +476,7 @@ app.get('/users', (req, res) => {
 
 // 新規登録ページ
 app.get('/signup', (req, res) => {
-  res.render('signup.ejs', { errors: [] });
+  res.render('signup.ejs', { errors: [], csrfToken: req.csrfToken() });
 });
 
 // 新しいユーザーの追加
