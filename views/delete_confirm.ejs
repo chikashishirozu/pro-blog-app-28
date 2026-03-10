@@ -11,6 +11,9 @@
       <h1 style="margin: 25px; color: red;">記事の削除</h1>
       <p style="margin: 25px; color: red;">以下の記事を削除しても良いですか？</p>
       <p style="margin: 25px;"><strong><%= article.title %></strong></p>
+      <hr style="color: gray; margin: 25px;"/>
+      <p style="margin: 10px; white-space: pre-wrap; padding-left: 1em;"><%= article.summary %></p>
+      <hr style="color: gray; margin: 25px;"/>
       <p style="margin: 10px; white-space: pre-wrap; padding-left: 1em;"><%= article.content %></p>
       <form action="/article/<%= article.id %>/delete" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">

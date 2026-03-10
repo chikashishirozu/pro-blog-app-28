@@ -13,6 +13,9 @@
       <div class="article">
         <% if (article.category === 'all') { %>
           <h1><%= article.title %></h1>
+          <hr style="color: gray; margin: 25px;"/>
+          <p><%= article.summary %></p>
+          <hr style="color: gray; margin: 25px;"/>
           <p><%= article.content %></p>
           <p>投稿者：<%= article.username %></p>
           <p>投稿日時：<%= article.created_at %></p><br/><br/>
@@ -27,6 +30,9 @@
           <i>会員限定</i>
           <h1><%= article.title %></h1>
           <% if (locals.isLoggedIn) { %>
+            <hr style="color: gray; margin: 25px;"/>
+            <p><%= article.summary %></p>
+            <hr style="color: gray; margin: 25px;"/>
             <p><%= article.content %></p>
             <br/><br/><br/>
             <p>投稿者：<%= article.username %></p>
