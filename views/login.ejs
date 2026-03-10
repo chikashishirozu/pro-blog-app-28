@@ -18,6 +18,7 @@
             <input type="text" name="email">
             <label for="password">パスワード</label>        
             <input type="password" name="password">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="submit" value="ログイン">
             <footer>
               <a class="btn sub" href="/list">一覧にもどる</a>
