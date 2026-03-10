@@ -42,7 +42,8 @@ app.use(session({
 }));
 
 // csrfProtection は session・cookieParser の後に定義・適用
-const csrfProtection = csrf({ cookie: true });
+// const csrfProtection = csrf({ cookie: true });
+const csrfProtection = csrf();
 app.use(csrfProtection);
 
 app.set('view engine', 'ejs');
@@ -71,14 +72,19 @@ function formatJSTDate() {
 
 // セッションデータをテンプレートに渡すミドルウェア
 app.use((req, res, next) => {
-  if (req.session.userId === undefined) {
+
+  res.locals.csrfToken = req.csrfToken();
+
+  if (!req.session.userId) {
     res.locals.username = 'ゲスト';
     res.locals.isLoggedIn = false;
   } else {
     res.locals.username = req.session.username;
     res.locals.isLoggedIn = true;
   }
+
   next();
+
 });
 
 // ルーティング設定
@@ -215,9 +221,8 @@ app.post('/add-article', (req, res) => {
   if (category !== "all" && category !== "limited") {
     errors.push('カテゴリーは"all"または"limited"を入力してください');
   }
-
   if (errors.length > 0) {
-    res.render('add_articles.ejs', { errors: errors });
+    res.render('add_articles.ejs', { errors: errors, csrfToken: req.csrfToken() });
   } else {
     db.run('INSERT INTO articles (title, summary, content, category, user_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [title, summary, cleanContent, category, user_id, created_at, updated_at],
