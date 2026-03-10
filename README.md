@@ -21,9 +21,9 @@ $ npm install
 
 $ npm outdated
 ```
-# Specify IP address or port, default is 127.0.0.1:3000
+# Specify IP address or port, default is 127.0.0.1:3003
 ```
-$ node app.js 127.0.0.1 3003 or $ node app.js
+$ node app.js 127.0.0.1 3000 or $ node app.js
 ```
 # sqliteDB
 
