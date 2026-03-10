@@ -27,8 +27,9 @@
             <input type="text" name="email">
             <p>パスワード</p>
             <input type="password" name="password">
-            <p id="pass02">パスワードの確認</pl>        
+            <p id="pass02">パスワードの確認</p>        
             <input type="password" name="password_conform">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="submit" value="登録する">           
             <footer>
               <a class="btn sub" href="/list">一覧にもどる</a>

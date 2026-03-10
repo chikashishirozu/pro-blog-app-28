@@ -16,16 +16,12 @@
           <p><%= article.content %></p>
           <p>投稿者：<%= article.username %></p>
           <p>投稿日時：<%= article.created_at %></p><br/><br/>
-          <!-- <p>セッションユーザーID：<%= user_id %></p> -->
-          <!-- <p>記事ユーザーID：<%= article.user_id %></p> -->
           <% if (article.updated_at) { %>
             <p>更新日時：<%= article.updated_at %></p>
           <% } %>
           <br/><br/>
           <% if (locals.user_id === article.user_id) { %>
-            <form action="/article/<%= article.id %>/delete" method="post">
-              <button type="submit">削除</button>
-            </form>
+            <a href="/article/<%= article.id %>/delete" style="background-color: red; color: white; padding: 7px 10px 7px 10px; font-size: 16.5px; border-radius: 4px; margin: 0 8px 0 0;">削除</a>
           <% } %>         
         <% } else if (article.category === 'limited') { %>
           <i>会員限定</i>
@@ -35,22 +31,16 @@
             <br/><br/><br/>
             <p>投稿者：<%= article.username %></p>
             <p>投稿日時：<%= article.created_at %></p>
-            <!-- <p>セッションユーザーID：<%= user_id %></p> -->
-            <!-- <p>記事ユーザーID：<%= article.user_id %></p> -->    
             <% if (article.updated_at) { %>
               <p>更新日時：<%= article.updated_at %></p>
             <% } %>
             <br/><br/>            
             <% if (locals.user_id === article.user_id) { %>
             <div class="button-group">
-              <form action="/article/<%= article.id %>/delete" method="post">
-                <button id="sakuzyo" type="submit">削除</button>
-              </form>
-              <!-- ここから編集ボタンを追加 -->
+              <a id="sakuzyo" href="/article/<%= article.id %>/delete" style="background-color: red; color: white; padding: 7px 10px 7px 10px; font-size: 16.5px; border-radius: 4px; margin: 0 8px 0 0;">削除</a>
               <form action="/article/<%= article.id %>/edit" method="get">
-                <button id="hennshuu" type="submit">編集</button>
+                <button id="hennshuu" type="submit" style="background-color: blue; color: white; padding: 7px 10px 7px 10px; font-size: 16.5px; border-radius: 4px; margin: 0 8px 0 0;">編集</button>
               </form>
-              <!-- ここまで編集ボタンを追加 -->
             </div>
             <% } %>
           <% } else { %>

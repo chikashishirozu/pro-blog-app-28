@@ -26,6 +26,7 @@
             <textarea name="content"><%= article.content %></textarea>
             <p>カテゴリー</p>         
             <input type="text" name="category" placeholder="all または limited を入力してください。" value="<%= article.category %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="submit" value="更新">
         </form>
     <footer id="addd">

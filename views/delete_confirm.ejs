@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>削除確認</title>
+    <link rel="shortcut icon" href="/favicon.ico/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body style="texi-align: center; margin:20px;">
+    <div class="container">
+      <h1 style="margin: 25px; color: red;">記事の削除</h1>
+      <p style="margin: 25px; color: red;">以下の記事を削除しても良いですか？</p>
+      <p style="margin: 25px;"><strong><%= article.title %></strong></p>
+      <p style="margin: 10px; white-space: pre-wrap; padding-left: 1em;"><%= article.content %></p>
+      <form action="/article/<%= article.id %>/delete" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" style="background-color: red; color: white; padding: 7px 10px 7px 10px; font-size: 16.5px; border-radius: 4px; margin: 10px 8px 10px 25px; border: none;">削除する</button>
+        <a href="/article/<%= article.id %>" style="background-color: gray; color: white; padding: 7px 10px 7px 10px; font-size: 16.5px; border-radius: 4px; margin: 10px 8px 20px 25px; width: 120px;">キャンセル</a>
+      </form>
+    </div>
+  </body>
+</html>
