@@ -2,6 +2,17 @@
 ```
 https://zusann123.blogspot.com/2025/01/image.html
 ```
+# ブログのセキュリティレベル
+
+今の構成
+```
+Helmet
+RateLimit
+Session
+CSRF
+bcrypt
+sanitize-html
+```
 # Steps required to start and run the application
 
 Install nodejs22.12.0(LTS), sqlite3
