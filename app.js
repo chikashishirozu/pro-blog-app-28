@@ -264,7 +264,7 @@ app.get('/article/:id/edit', (req, res) => {
       res.status(403).send('Forbidden: You can only edit your own articles');
       return;
     }
-    res.render('edit_article.ejs', { article: article, errors: [] });
+    res.render('edit_article.ejs', { article: article, errors: [], csrfToken: req.csrfToken() });    
   });
 });
 
@@ -386,15 +386,36 @@ app.get('/search', (req, res) => {
 
 });
 
-// 記事の削除
-app.post('/article/:id/delete', (req, res) => {
+// 削除確認ページ
+app.get('/article/:id/delete', (req, res) => {
   const id = req.params.id;
-  const user_id = req.session.userId; // ログイン中のユーザーIDを取得 
-
+  const user_id = req.session.userId;
   if (!user_id) {
     res.status(403).send('ログインが必要です');
     return;
-  } 
+  }
+  db.get('SELECT * FROM articles WHERE id = ? AND user_id = ?', [id, user_id], (err, article) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('データベースエラーが発生しました');
+      return;
+    }
+    if (!article) {
+      res.status(404).send('記事が見つかりません');
+      return;
+    }
+    res.render('delete_confirm.ejs', { article: article, csrfToken: req.csrfToken() });
+  });
+});
+
+// 記事の削除
+app.post('/article/:id/delete', (req, res) => {
+  const id = req.params.id;
+  const user_id = req.session.userId;
+  if (!user_id) {
+    res.status(403).send('ログインが必要です');
+    return;
+  }
   db.get('SELECT * FROM articles WHERE id = ?', [id], (err, article) => {
     if (err) {
       console.error(err);
@@ -403,7 +424,6 @@ app.post('/article/:id/delete', (req, res) => {
     }
     if (article && article.user_id === user_id) {
       db.run('DELETE FROM articles WHERE id = ?', [id], (err) => {
-        // ...（エラーハンドリングとリダイレクト）
         if (err) {
           console.error(err);
           res.status(500).send('記事の削除中にエラーが発生しました');
