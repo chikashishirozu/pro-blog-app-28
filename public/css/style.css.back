@@ -23,220 +23,23 @@ ul {
   margin: 0;
 }
 
-/* ============================================
-   CSS変数定義（ライトモード）
-   ============================================ */
-:root {
-  /* 背景色 */
-  --bg-main: #f0f0f0;
-  --bg-sub: #F6FAFF;
-  --bg-card: #FCFCFD;
-  --bg-art002: #f0f8ff;
-  --bg-art003: #f0f0f0;
-  --bg-addd: #f0f0f0;
-  --bg-addc: #f0f0f0;
-  --bg-adda: #f0f0f0;
-  --bg-search: #f5f5f5;
-  --bg-search02: #f0f8ff;
-  --bg-top-wrapper: #fbfbfb;
-  --bg-top-after: #fff;
-
-  /* テキスト色 */
-  --text-main: #2B546A;
-  --text-muted: #8491A5;
-  --text-white: #ffffff;
-  --text-nav: #00ffff;
-  --text-top-content: #00ffff;
-  --text-top-h2: #ff0000;
-  --text-top-p: #00ffff;
-
-  /* ボーダー */
-  --border-color: #d5dee8;
-  --border-light: #E1E9F1;
-  --border-confirm: #E29A9A;
-
-  /* ボタン・アクセント */
-  --btn-primary: #4CCFC9;
-  --btn-primary-hover: #2DC2BC;
-  --btn-sub: #B7C7DF;
-  --btn-sub-hover: #A9B9D2;
-  --btn-danger: #E75252;
-  --btn-danger-hover: #D84444;
-  --btn-blue: #007BFF;
-  --btn-blue-hover: #0056b3;
-  --btn-search: #00ffff;
-  --btn-search-hover: #ffd700;
-  --btn-delete: #FF0000;
-  --btn-edit: #0000FF;
-
-  /* リンク */
-  --link-primary: #30C8D6;
-  --link-primary-hover: #21BBC9;
-  --link-sign: #4CCFC9;
-  --link-sign-hover: #2DC2BC;
-  --link-muted: #A4B5C8;
-  --link-admin: #8098a5;
-
-  /* タグ・バッジ */
-  --badge-bg: #FF708F;
-  --badge-text: #ffffff;
-
-  /* カウンター枠 */
-  --counter-color: #9eb0b9;
-  --counter-limited: #FF708F;
-
-  /* エラー */
-  --error-color: #ED5974;
-  --error-border: #e29a9a;
-
-  /* ヘッダー */
-  --header-admin-bg: #A0C3F7;
-  --header-text: #ffffff;
-
-  /* confirm */
-  --confirm-title: #E75252;
-
-  /* フッター */
-  --footer-bg: #F6FAFF;
-
-  /* ページネーション */
-  --pagination-link: #007bff;
-  --pagination-border: #dee2e6;
-  --pagination-active-bg: #007bff;
-
-  /* サインイン */
-  --sign-border-top: #88E7CE;
-  --sign-panel-bg: #F6FAFF;
-  --sign-heading: #2B546A;
-  --sign-heading-hover: #2b6d90;
-
-  /* input */
-  --input-bg: #FCFCFD;
-  --input-border: #d5dee8;
-  --input-border-hover: #b6c4d2;
-  --input-text: #2B546A;
-  --input-shadow: rgba(160, 195, 247, 0.2);
-  --autofill-shadow: #FCFCFD;
-}
-
-/* ============================================
-   ダークモード変数上書き
-   ============================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* 背景色 */
-    --bg-main: #121212;
-    --bg-sub: #1e1e2e;
-    --bg-card: #2a2a3a;
-    --bg-art002: #1a2030;
-    --bg-art003: #121212;
-    --bg-addd: #181818;
-    --bg-addc: #181818;
-    --bg-adda: #1e1e1e;
-    --bg-search: #1a1a1a;
-    --bg-search02: #1a2030;
-    --bg-top-wrapper: #1a1a1a;
-    --bg-top-after: #121212;
-
-    /* テキスト色 */
-    --text-main: #dce6f0;
-    --text-muted: #8a9bb0;
-    --text-white: #ffffff;
-    --text-nav: #00cccc;
-    --text-top-content: #00cccc;
-    --text-top-h2: #ff4444;
-    --text-top-p: #00cccc;
-
-    /* ボーダー */
-    --border-color: #3a4a5a;
-    --border-light: #2a3a4a;
-    --border-confirm: #8a4a4a;
-
-    /* ボタン・アクセント */
-    --btn-primary: #3ab8b2;
-    --btn-primary-hover: #2aa8a2;
-    --btn-sub: #4a5a6a;
-    --btn-sub-hover: #5a6a7a;
-    --btn-danger: #c94040;
-    --btn-danger-hover: #b43030;
-    --btn-blue: #2060c0;
-    --btn-blue-hover: #1050a0;
-    --btn-search: #008888;
-    --btn-search-hover: #aa8800;
-    --btn-delete: #cc0000;
-    --btn-edit: #0000cc;
-
-    /* リンク */
-    --link-primary: #2aa8b8;
-    --link-primary-hover: #1a9aaa;
-    --link-sign: #3ab8b2;
-    --link-sign-hover: #2aa8a2;
-    --link-muted: #6a7a8a;
-    --link-admin: #6a8090;
-
-    /* タグ・バッジ */
-    --badge-bg: #cc4466;
-    --badge-text: #ffffff;
-
-    /* カウンター枠 */
-    --counter-color: #6a8090;
-    --counter-limited: #cc4466;
-
-    /* エラー */
-    --error-color: #cc3355;
-    --error-border: #8a4a4a;
-
-    /* ヘッダー */
-    --header-admin-bg: #2a4a6a;
-    --header-text: #e0e0e0;
-
-    /* confirm */
-    --confirm-title: #c94040;
-
-    /* フッター */
-    --footer-bg: #1e1e2e;
-
-    /* ページネーション */
-    --pagination-link: #4a8aee;
-    --pagination-border: #3a4a5a;
-    --pagination-active-bg: #2a6acc;
-
-    /* サインイン */
-    --sign-border-top: #2a8a6a;
-    --sign-panel-bg: #1e1e2e;
-    --sign-heading: #dce6f0;
-    --sign-heading-hover: #aaccee;
-
-    /* input */
-    --input-bg: #2a2a3a;
-    --input-border: #3a4a5a;
-    --input-border-hover: #5a6a7a;
-    --input-text: #dce6f0;
-    --input-shadow: rgba(60, 100, 160, 0.3);
-    --autofill-shadow: #2a2a3a;
-  }
-}
-
-/* ============================================
-   ベーススタイル
-   ============================================ */
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  color: var(--text-main);
+  color: #2B546A;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
   font-family: Lato, "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif;
-  background-color: var(--bg-main);
+  background-color: #f0f0f0;  
 }
 
 #art002 {
-  background-color: var(--bg-art002);
+  background-color: #f0f8ff;
 }
 
 #art003 {
-  background-color: var(--bg-art003);
+  background-color: #f0f0f0;
 }
 
 img {
@@ -252,19 +55,16 @@ select {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  box-shadow: 0 0 0 1000px var(--autofill-shadow) inset;
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  box-shadow: 0 0 0 1000px #FCFCFD inset;
 }
 
 a {
   text-decoration: none;
 }
 
-/* ============================================
-   記事追加フォーム
-   ============================================ */
 h1#addb {
   text-align: center;
   margin: 0 300px 0 300px;
@@ -273,7 +73,7 @@ h1#addb {
 form#addc {
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-addc);
+  background-color: #f0f0f0;
 }
 
 form#addc p {
@@ -285,27 +85,26 @@ form#addc textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid var(--border-color);
+  border: 1px solid #ccc;
   border-radius: 5px;
-  color: var(--input-text);
-  background-color: var(--input-bg);
+  color: #000000;
 }
 
 form#addc input[type="submit"] {
   padding: 10px;
-  background-color: var(--btn-blue);
-  color: var(--text-white);
+  background-color: #007BFF;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 form#addc input[type="submit"]:hover {
-  background-color: var(--btn-blue-hover);
+  background-color: #0056b3;
 }
 
 #addd {
-  background-color: var(--bg-addd);
+  background-color: #f0f0f0; 
 }
 
 #pass02 {
@@ -316,22 +115,16 @@ form#addc input[type="submit"]:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid var(--border-color);
+  border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: var(--bg-adda);
+  background-color: #f0f0f0;  
 }
 
-/* ============================================
-   エラー
-   ============================================ */
 .errors, #error-list {
   color: red;
   list-style: none;
 }
 
-/* ============================================
-   記事フォーム
-   ============================================ */
 .article-forms {
   position: relative;
   padding: 50px 0 0;
@@ -347,8 +140,8 @@ form#addc input[type="submit"]:hover {
   align-items: center;
   border-width: 2px;
   border-style: solid;
-  color: var(--counter-color);
-  border-color: var(--border-light);
+  color: #9eb0b9;
+  border-color: #E1E9F1;
   height: 40px;
   padding: 0 20px;
   border-radius: 6px;
@@ -356,13 +149,10 @@ form#addc input[type="submit"]:hover {
 }
 
 .article-forms > i.limited {
-  color: var(--counter-limited);
-  border-color: var(--counter-limited);
+  color: #FF708F;
+  border-color: #FF708F;
 }
 
-/* ============================================
-   記事
-   ============================================ */
 .article {
   padding: 20px 0 0;
 }
@@ -385,8 +175,8 @@ form#addc input[type="submit"]:hover {
 .article > i {
   display: inline-flex;
   align-items: center;
-  background-color: var(--badge-bg);
-  color: var(--badge-text);
+  background-color: #FF708F;
+  color: #ffffff;
   font-size: 14px;
   font-weight: bold;
   padding: 4px 20px;
@@ -395,12 +185,9 @@ form#addc input[type="submit"]:hover {
   margin-top: 0px;
 }
 
-/* ============================================
-   記事ログイン
-   ============================================ */
 .article-login {
   text-align: center;
-  background-color: var(--bg-sub);
+  background-color: #F6FAFF;
   border-radius: 10px;
   padding: 60px 40px 50px;
 }
@@ -429,38 +216,35 @@ form#addc input[type="submit"]:hover {
 .article-login a + p > a {
   display: inline-block;
   margin-left: 20px;
-  color: var(--link-sign);
+  color: #4CCFC9;
 }
 
 .article-login a + p > a:hover {
-  color: var(--link-sign-hover);
+  color: #2DC2BC;
 }
 
-/* ============================================
-   ボタン
-   ============================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   font-size: 18px;
   font-weight: bold;
-  color: var(--text-white);
-  background-color: var(--btn-primary);
+  color: #ffffff;
+  background-color: #4CCFC9;
   height: 54px;
   padding: 0 90px;
   border-radius: 27px;
 }
 
 .btn:hover {
-  background-color: var(--btn-primary-hover);
+  background-color: #2DC2BC;
 }
 
 .btn.sub {
-  background-color: var(--btn-sub);
+  background-color: #B7C7DF;
 }
 
 .btn.sub:hover {
-  background-color: var(--btn-sub-hover);
+  background-color: #A9B9D2;
 }
 
 .btn-confirm {
@@ -469,30 +253,27 @@ form#addc input[type="submit"]:hover {
   align-items: center;
   font-size: 18px;
   font-weight: bold;
-  color: var(--text-white);
-  background-color: var(--btn-danger);
+  color: #ffffff;
+  background-color: #E75252;
   height: 44px;
   padding: 0 65px;
   border-radius: 22px;
 }
 
 .btn-confirm:hover {
-  background-color: var(--btn-danger-hover);
+  background-color: #D84444;
 }
 
 .btn-confirm.sub {
-  background-color: var(--btn-sub);
+  background-color: #B7C7DF;
 }
 
 .btn-confirm.sub:hover {
-  background-color: var(--btn-sub-hover);
+  background-color: #A9B9D2;
 }
 
-/* ============================================
-   確認
-   ============================================ */
 .confirm {
-  border: 2px solid var(--border-confirm);
+  border: 2px solid #E29A9A;
   border-radius: 0.4rem;
   padding: 40px 40px 50px 40px;
   margin-bottom: 90px;
@@ -501,7 +282,7 @@ form#addc input[type="submit"]:hover {
 
 .confirm > h1 {
   font-size: 24px;
-  color: var(--confirm-title);
+  color: #E75252;
 }
 
 .confirm > p {
@@ -516,16 +297,13 @@ form#addc input[type="submit"]:hover {
   display: inline;
 }
 
-/* ============================================
-   作成エリア
-   ============================================ */
 .create-area {
   z-index: 1;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: var(--bg-sub);
+  background-color: #F6FAFF;
   padding: 40px 0;
 }
 
@@ -547,35 +325,26 @@ form#addc input[type="submit"]:hover {
   padding: 0 60px;
 }
 
-/* ============================================
-   エラー詳細
-   ============================================ */
 .errors {
   font-size: 14px;
   font-weight: bold;
-  color: var(--error-color);
-  border: 1px solid var(--error-border);
+  color: #ED5974;
+  border: 1px solid #e29a9a;
   padding: 12px 34px;
   line-height: 1.6;
   border-radius: 6px;
   list-style: outside;
-  background-color: var(--bg-card);
+  background-color: #fff;
   margin-top: 30px;
 }
 
-/* ============================================
-   フッター
-   ============================================ */
 footer {
-  background-color: var(--footer-bg);
+  background-color: #F6FAFF;
   text-align: center;
   padding: 70px 0 100px;
   flex: 1;
 }
 
-/* ============================================
-   フォーム共通
-   ============================================ */
 form > p {
   font-size: 16px;
   font-weight: bold;
@@ -587,7 +356,7 @@ form > a {
   width: 50%;
   text-align: center;
   margin: 10px auto 0;
-  color: var(--link-muted);
+  color: #A4B5C8;
   font-weight: bold;
   padding: 15px 0;
 }
@@ -597,23 +366,23 @@ textarea {
   width: 100%;
   padding: 16px 20px;
   line-height: 1.8;
-  border: 1px solid var(--input-border);
-  background-color: var(--input-bg);
+  border: 1px solid #d5dee8;
+  background-color: #FCFCFD;
   border-radius: 4px;
   outline: none;
   font-size: 16px;
-  color: var(--input-text);
+  color: #2B546A;
 }
 
 input:hover,
 textarea:hover {
-  border-color: var(--input-border-hover);
-  box-shadow: 0px 0px 12px 1px var(--input-shadow);
+  border-color: #b6c4d2;
+  box-shadow: 0px 0px 12px 1px rgba(160, 195, 247, 0.2);
 }
 
 input:focus,
 textarea:focus {
-  border-color: var(--input-border-hover);
+  border-color: #b6c4d2;
 }
 
 textarea {
@@ -639,8 +408,8 @@ textarea[name="content"] {
 input[type="submit"] {
   font-size: 18px;
   font-weight: bold;
-  color: var(--text-white);
-  background-color: var(--btn-primary);
+  color: #ffffff;
+  background-color: #4CCFC9;
   height: 54px;
   padding: 0 90px;
   border-radius: 27px;
@@ -650,23 +419,20 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: var(--btn-primary-hover);
+  background-color: #2DC2BC;
   cursor: pointer;
 }
 
-/* ============================================
-   ヘッダー
-   ============================================ */
 header {
   background-image: url('/images/header02.png');
   background-size: cover;
   width: 100%;
   height: auto;
-  box-sizing: border-box;
+  box-sizing: border-box;  
 }
 
 header.admin {
-  background-color: var(--header-admin-bg);
+  background-color: #A0C3F7;
 }
 
 header.admin > p:after {
@@ -677,7 +443,7 @@ header > p {
   position: relative;
   max-width: 700px;
   margin: 0 auto;
-  color: var(--header-text);
+  color: #ffffff;
   font-size: 36px;
   font-weight: bold;
   padding: 40px 0 80px;
@@ -697,9 +463,6 @@ header > p:after {
   background-image: url('/images/wanko.svg');
 }
 
-/* ============================================
-   検索
-   ============================================ */
 ul#ul03 {
   margin-top: 8px;
 }
@@ -714,18 +477,18 @@ form#search01 {
   margin: 0 auto 0 30px;
   width: 140px;
   height: 15px;
-  background-color: var(--bg-search02);
+  background-color: #f0f8ff;
 }
 
 body#search {
   font-family: 'Roboto', sans-serif;
-  background-color: var(--bg-search);
+  background-color: #f5f5f5;
   margin: 50px;
-  line-height: 2rem;
+  line-height: 2rem; 
 }
 
 #search h1 {
-  margin: 0 auto 15px 0;
+  margin: 0 auto 15px 0; 
 }
 
 #search ul {
@@ -735,7 +498,7 @@ body#search {
 #search03 {
   margin: 0 auto auto 5px;
   padding: 4px 7px 4px 7px;
-  background-color: var(--btn-search);
+  background-color: #00ffff;
   border-radius: 5px;
   border: none;
   text-align: center;
@@ -745,12 +508,9 @@ body#search {
 }
 
 #search03:hover {
-  background-color: var(--btn-search-hover);
+  background-color: #ffd700;
 }
 
-/* ============================================
-   ボタングループ
-   ============================================ */
 .button-group {
   display: flex;
 }
@@ -758,30 +518,27 @@ body#search {
 button#sakuzyo {
   margin: 0 10px 20px 0;
   padding: 4px 8px 4px 8px;
-  background-color: var(--btn-delete);
-  color: var(--text-white);
+  background-color: #FF0000;
+  color: #FFFFFF; 
   border-radius: 5px;
   border: none;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 18px;  
 }
 
 button#hennshuu {
   margin: 0 auto 20px 2px;
   padding: 4px 8px 4px 8px;
-  background-color: var(--btn-edit);
-  color: var(--text-white);
+  background-color: #0000FF;
+  color: #FFFFFF;
   border-radius: 5px;
   border: none;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 18px;  
 }
 
-/* ============================================
-   ヘッダーナビ
-   ============================================ */
 .header-nav {
   display: flex;
   flex-wrap: nowrap;
@@ -795,14 +552,14 @@ button#hennshuu {
 }
 
 .header-nav > a {
-  color: var(--text-nav);
+  color: #00ffff;
   font-weight: bold;
 }
 
 .header-nav p {
   padding-left: 30px;
   font-size: 15px;
-  color: var(--text-nav);
+  color: #00ffff;
   font-weight: bold;
   word-wrap: break-word;
   opacity: 0.7;
@@ -818,27 +575,20 @@ button#hennshuu {
   white-space: nowrap;
   display: inline-block;
   font-size: 15px;
-  color: var(--text-nav);
+  color: #00ffff;
   font-weight: bold;
   padding-left: 30px;
 }
 
-/* ============================================
-   見出し
-   ============================================ */
 .heading {
   font-size: 30px;
 }
 
-/* ============================================
-   リスト
-   ============================================ */
 .list li, .list-admin li {
   position: relative;
   padding: 28px 40px 54px;
-  border: 1px solid var(--border-color);
+  border: 1px solid #d5dee8;
   border-radius: 6px;
-  background-color: var(--bg-card);
 }
 
 .list li:not(:first-child),
@@ -854,15 +604,15 @@ button#hennshuu {
 .list p,
 .list-admin p {
   font-size: 16px;
-  color: var(--text-muted);
+  color: #8491A5;
 }
 
 .list i,
 .list-admin i {
   display: inline-flex;
   align-items: center;
-  background-color: var(--badge-bg);
-  color: var(--badge-text);
+  background-color: #FF708F;
+  color: #ffffff;
   font-size: 14px;
   font-weight: bold;
   padding: 3px 16px;
@@ -881,11 +631,11 @@ button#hennshuu {
   bottom: 18px;
   right: 30px;
   display: inline-block;
-  color: var(--link-primary);
+  color: #30C8D6;
 }
 
 .list a:hover {
-  color: var(--link-primary-hover);
+  color: #21BBC9;
 }
 
 .list-admin {
@@ -926,7 +676,7 @@ button#hennshuu {
 
 .list-admin a {
   display: inline-flex;
-  color: var(--link-admin);
+  color: #8098a5;
   font-size: 16px;
   text-align: center;
   flex-direction: column;
@@ -943,9 +693,6 @@ button#hennshuu {
   opacity: 0.7;
 }
 
-/* ============================================
-   メイン
-   ============================================ */
 main {
   max-width: 700px;
   width: 100%;
@@ -953,11 +700,8 @@ main {
   padding: 80px 0 100px;
 }
 
-/* ============================================
-   サインイン
-   ============================================ */
 .sign {
-  border-top: 20px solid var(--sign-border-top);
+  border-top: 20px solid #88E7CE;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -979,11 +723,11 @@ main {
 .sign > .container > p > a {
   display: inline-block;
   margin-left: 20px;
-  color: var(--link-sign);
+  color: #4CCFC9;
 }
 
 .sign > .container > p > a:hover {
-  color: var(--link-sign-hover);
+  color: #2DC2BC;
 }
 
 .sign > .container form {
@@ -992,7 +736,7 @@ main {
 
 .sign .panel {
   padding: 60px 80px 40px;
-  background-color: var(--sign-panel-bg);
+  background-color: #F6FAFF;
 }
 
 .sign h1 {
@@ -1002,11 +746,11 @@ main {
 }
 
 .sign h1 > a {
-  color: var(--sign-heading);
+  color: #2B546A;
 }
 
 .sign h1 > a:hover {
-  color: var(--sign-heading-hover);
+  color: #2b6d90;
 }
 
 .sign h2 {
@@ -1023,7 +767,7 @@ main {
 }
 
 .sign input:-webkit-autofill {
-  box-shadow: 0 0 0px 1000px var(--autofill-shadow) inset;
+  box-shadow: 0 0 0px 1000px #fff inset;
 }
 
 .sign input[name="username"] {
@@ -1039,9 +783,6 @@ main {
   width: 90%;
 }
 
-/* ============================================
-   トップページ
-   ============================================ */
 .top {
   display: flex;
   align-items: center;
@@ -1054,7 +795,7 @@ main {
   width: 100%;
   height: 700px;
   max-height: 700px;
-  background-color: var(--bg-top-wrapper);
+  background-color: #fbfbfb;
 }
 
 .top .wrapper:after {
@@ -1064,7 +805,7 @@ main {
   bottom: 0;
   left: 0;
   height: 24px;
-  background-color: var(--bg-top-after);
+  background-color: #fff;
   width: 100%;
 }
 
@@ -1077,7 +818,7 @@ main {
   height: 100%;
   text-align: center;
   letter-spacing: 0.1em;
-  color: var(--text-top-content);
+  color:  #00ffff;
 }
 
 .top h1 {
@@ -1089,15 +830,16 @@ main {
   text-align: center;
   font-size: 18px;
   margin: 152px 0 20px;
-  color: var(--text-top-h2);
+  color: #ff0000;
 }
 
 .top p {
-  color: var(--text-top-p);
+  color: #00ffff;
 }
 
 .top a {
   margin-top: 30px;
+  
 }
 
 .top .image {
@@ -1111,22 +853,19 @@ main {
 }
 
 #topimage01 {
-  background-size: cover;
-  width: 100vw;
-  height: auto;
+background-size: cover;
+width: 100vw;
+height: auto;
 }
 
-/* ============================================
-   確認ボタン（input版）
-   ============================================ */
 input[type="submit"].btn-confirm {
   width: auto;
   display: inline-flex;
   align-items: center;
   font-size: 18px;
   font-weight: bold;
-  color: var(--text-white);
-  background-color: var(--btn-danger);
+  color: #ffffff;
+  background-color: #E75252;
   height: 44px;
   padding: 0 65px;
   border-radius: 22px;
@@ -1134,26 +873,23 @@ input[type="submit"].btn-confirm {
 }
 
 input[type="submit"].btn-confirm:hover {
-  background-color: var(--btn-danger-hover);
+  background-color: #D84444;
 }
 
 input[type="submit"].btn-confirm.sub {
-  background-color: var(--btn-sub);
+  background-color: #B7C7DF;
 }
 
 input[type="submit"].btn-confirm.sub:hover {
-  background-color: var(--btn-sub-hover);
+  background-color: #A9B9D2;
 }
 
-/* ============================================
-   ページネーション
-   ============================================ */
 .pagination {
   display: flex;
   list-style: none;
   padding: 0;
   justify-content: center;
-  margin-top: 80px;
+  margin-top : 80px;
 }
 
 .pagination li {
@@ -1164,19 +900,20 @@ input[type="submit"].btn-confirm.sub:hover {
   display: block;
   padding: 8px 16px;
   text-decoration: none;
-  color: var(--pagination-link);
-  border: 1px solid var(--pagination-border);
+  color: #007bff;
+  border: 1px solid #dee2e6;
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .pagination a:hover {
-  background-color: var(--pagination-link);
-  color: var(--text-white);
+  background-color: #007bff;
+  color: #fff;
 }
 
 .pagination .active a {
-  background-color: var(--pagination-active-bg);
-  color: var(--text-white);
-  border-color: var(--pagination-active-bg);
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }
+
