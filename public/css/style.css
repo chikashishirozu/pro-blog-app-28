@@ -123,6 +123,20 @@ ul {
    ダークモード変数上書き
    ============================================ */
 @media (prefers-color-scheme: dark) {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: #DCE6F0 !important;
+    box-shadow: 0 0 0 1000px #2a2a3a inset !important;
+  }
+  #search a:visited {
+    color: #2e8b57;
+  }
+  #search h1 {
+    color: gold;
+  } 
+
   :root {
     /* 背景色 */
     --bg-main: #121212;
@@ -142,10 +156,10 @@ ul {
     --text-main: #dce6f0;
     --text-muted: #8a9bb0;
     --text-white: #ffffff;
-    --text-nav: #00cccc;
-    --text-top-content: #00cccc;
+    --text-nav: #00ffff;
+    --text-top-content: #00ffff;
     --text-top-h2: #ff4444;
-    --text-top-p: #00cccc;
+    --text-top-p: #00ffff;
 
     /* ボーダー */
     --border-color: #3a4a5a;
@@ -161,12 +175,12 @@ ul {
     --btn-danger-hover: #b43030;
     --btn-blue: #2060c0;
     --btn-blue-hover: #1050a0;
-    --btn-search: #008888;
-    --btn-search-hover: #aa8800;
+    --btn-search: #00ffff;
+    --btn-search-hover: #ff8c00;
     --btn-delete: #cc0000;
     --btn-edit: #0000cc;
 
-    /* リンク */
+    /* リンク 
     --link-primary: #2aa8b8;
     --link-primary-hover: #1a9aaa;
     --link-sign: #3ab8b2;
